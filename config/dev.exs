@@ -2,7 +2,7 @@ use Mix.Config
 
 # Configure your database
 config :daily_habits, DailyHabits.Repo,
-  username: "postgres",
+  username: "apatel",
   password: "postgres",
   database: "daily_habits_dev",
   hostname: "localhost",
