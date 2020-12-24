@@ -4,13 +4,14 @@ module.exports = {
     require("postcss-import"),
     require("tailwindcss"),
     require("autoprefixer"),
-    require("postcss-purgecss")({
+    ...(process.env.NODE_ENV == "production" ?
+    require("@fullhuman/postcss-purgecss")({
       content: [
         "../**/*html.eex",
         "../**/views/*.ex",
         "./js/**.js",
       ],
       defaultExtractor: content => content.match(/[\w-/:]*(?<!:)/g) || []
-    })
+    }) : [])
   ],
 }
