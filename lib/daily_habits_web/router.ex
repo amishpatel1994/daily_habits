@@ -11,12 +11,29 @@ defmodule DailyHabitsWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug DailyHabits.Users.AuthFlow, otp_app: :daily_habits
+  end
+
+  pipeline :api_protected do
+    plug Pow.Plug.RequireAuthenticated,
+      error_handler: DailyHabitsWeb.AuthErrorHandler
   end
 
   scope "/", DailyHabitsWeb do
     pipe_through :browser
 
     get "/", PageController, :pwa
+  end
+
+  scope "/api/auth", DailyHabitsWeb do
+    pipe_through :api
+    post "/login", SessionController, :login
+    post "/register", SessionController, :register
+  end
+
+  scope "/api", DailyHabitsWeb do
+    pipe_through [:api, :api_protected]
+    get "/profile", TestController, :show
   end
 
   # Other scopes may use custom stacks.
