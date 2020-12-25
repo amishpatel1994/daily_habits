@@ -16,7 +16,7 @@ defmodule DailyHabitsWeb.Router do
   scope "/", DailyHabitsWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", PageController, :pwa
   end
 
   # Other scopes may use custom stacks.

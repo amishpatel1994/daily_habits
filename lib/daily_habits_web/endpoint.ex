@@ -18,11 +18,26 @@ defmodule DailyHabitsWeb.Endpoint do
   #
   # You should set gzip to true if you are running phx.digest
   # when deploying your static files in production.
-  plug Plug.Static,
+  # plug Plug.Static,
+  #   at: "/",
+  #   from: :daily_habits,
+  #   gzip: false,
+  #   only: ~w(css fonts images js favicon.ico robots.txt)
+
+  plug(
+    Plug.Static,
     at: "/",
-    from: :daily_habits,
+    from: {:daily_habits, "priv/static/build"},
     gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    only: ~w(asset-manifest.json favicon.ico manifest.json service-worker.js)
+  )
+
+  plug(
+    Plug.Static,
+    at: "/static",
+    from: {:daily_habits, "priv/static/build/static"},
+    gzip: false
+  )
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

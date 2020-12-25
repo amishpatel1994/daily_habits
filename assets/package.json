@@ -1,30 +1,50 @@
 {
-  "repository": {},
-  "license": "MIT",
-  "scripts": {
-    "deploy": "webpack --mode production",
-    "watch": "webpack --mode development --watch"
-  },
+  "name": "assets",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "autoprefixer": "^10.1.0",
-    "phoenix": "file:../deps/phoenix",
-    "phoenix_html": "file:../deps/phoenix_html",
-    "postcss": "^8.2.1",
-    "tailwindcss": "^2.0.2"
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.1",
+    "web-vitals": "^0.2.4",
+    "workbox-background-sync": "^5.1.3",
+    "workbox-broadcast-update": "^5.1.3",
+    "workbox-cacheable-response": "^5.1.3",
+    "workbox-core": "^5.1.3",
+    "workbox-expiration": "^5.1.3",
+    "workbox-google-analytics": "^5.1.3",
+    "workbox-navigation-preload": "^5.1.3",
+    "workbox-precaching": "^5.1.3",
+    "workbox-range-requests": "^5.1.3",
+    "workbox-routing": "^5.1.3",
+    "workbox-strategies": "^5.1.3",
+    "workbox-streams": "^5.1.3"
   },
-  "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "babel-loader": "^8.0.0",
-    "copy-webpack-plugin": "^5.1.1",
-    "css-loader": "^3.4.2",
-    "mini-css-extract-plugin": "^0.9.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "postcss-import": "^14.0.0",
-    "postcss-loader": "^4.1.0",
-    "purgecss": "^3.1.3",
-    "terser-webpack-plugin": "^2.3.2",
-    "webpack": "4.41.5",
-    "webpack-cli": "^3.3.2"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build && rm -rf ../priv/static/build && mv build ../priv/static/build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
