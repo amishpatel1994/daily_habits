@@ -4,7 +4,13 @@ defmodule DailyHabits.Users.User do
 
   schema "users" do
     pow_user_fields()
-
+    field :name, :string
     timestamps()
+  end
+
+  def changeset(user_or_changeset, attrs) do
+    user_or_changeset
+    |> pow_changeset(attrs)
+    |> Ecto.Changeset.cast(attrs, [:name])
   end
 end

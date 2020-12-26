@@ -7,8 +7,8 @@ defmodule DailyHabitsWeb.SessionController do
   alias DailyHabitsWeb.ErrorHelpers
 
   @spec login(Conn.t(), UserLogin.t()) :: Conn.t()
-  def login(conn, user_login) do
-    with {:ok, conn} <- conn |> Pow.Plug.authenticate_user(user_login) do
+  def login(conn, params) do
+    with {:ok, conn} <- conn |> Pow.Plug.authenticate_user(params) do
       json(conn, %{token: conn.private[:api_access_token]})
     else
       {:error, conn} ->
@@ -19,8 +19,8 @@ defmodule DailyHabitsWeb.SessionController do
   end
 
   @spec register(Conn.t(), UserRegistration.t()) :: Conn.t()
-  def register(conn, user_registration_command) do
-    with {:ok, _user, conn} <- conn |> Pow.Plug.create_user(user_registration_command) do
+  def register(conn, params) do
+    with {:ok, _user, conn} <- conn |> Pow.Plug.create_user(params) do
       json(conn, %{token: conn.private[:api_access_token]})
     else
       {:error, changeset, conn} ->
