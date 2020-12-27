@@ -6,9 +6,8 @@ defmodule DailyHabits.Goal.Streak do
     field :description, :string
     field :end_data, :date
     field :start_date, :date
-    field :user_id, :id
-    field :habit_id, :id
-
+    belongs_to :user, DailyHabits.Users.User
+    belongs_to :habit, DailyHabits.Goal.Habit
     timestamps()
   end
 

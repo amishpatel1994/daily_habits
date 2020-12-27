@@ -5,7 +5,7 @@ defmodule DailyHabits.Goal.Habit do
   schema "habits" do
     field :title, :string
     field :user_id, :id
-
+    has_many :streaks, DailyHabits.Goal.Streak
     timestamps()
   end
 
