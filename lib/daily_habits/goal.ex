@@ -17,8 +17,10 @@ defmodule DailyHabits.Goal do
       [%Habit{}, ...]
 
   """
-  def list_habits do
-    Repo.all(Habit)
+  def list_habits(params) do
+    Habit
+    |> Habit.by_title(Map.get(params, "habit"))
+    |> Repo.all()
   end
 
   @doc """

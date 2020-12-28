@@ -3,11 +3,11 @@ defmodule DailyHabitsWeb.StreakView do
   alias DailyHabitsWeb.StreakView
 
   def render("index.json", %{streaks: streaks}) do
-    %{data: render_many(streaks, StreakView, "streak.json")}
+    %{streaks: render_many(streaks, StreakView, "streak.json")}
   end
 
   def render("show.json", %{streak: streak}) do
-    %{data: render_one(streak, StreakView, "streak.json")}
+    %{streak: render_one(streak, StreakView, "streak.json")}
   end
 
   def render("streak.json", %{streak: streak}) do

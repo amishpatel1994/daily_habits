@@ -35,6 +35,7 @@ defmodule DailyHabitsWeb.Router do
     pipe_through [:api, :api_protected]
     get "/profile", TestController, :show
     get "/streaks", StreakController, :index
+    get "/habits", HabitController, :index
   end
 
   # Other scopes may use custom stacks.

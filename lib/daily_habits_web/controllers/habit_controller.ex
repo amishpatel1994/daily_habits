@@ -6,8 +6,8 @@ defmodule DailyHabitsWeb.HabitController do
 
   action_fallback DailyHabitsWeb.FallbackController
 
-  def index(conn, _params) do
-    habits = Goal.list_habits()
+  def index(conn, params) do
+    habits = Goal.list_habits(params)
     render(conn, "index.json", habits: habits)
   end
 

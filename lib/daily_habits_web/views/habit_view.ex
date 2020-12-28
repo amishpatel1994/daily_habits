@@ -3,11 +3,11 @@ defmodule DailyHabitsWeb.HabitView do
   alias DailyHabitsWeb.HabitView
 
   def render("index.json", %{habits: habits}) do
-    %{data: render_many(habits, HabitView, "habit.json")}
+    %{habits: render_many(habits, HabitView, "habit.json")}
   end
 
   def render("show.json", %{habit: habit}) do
-    %{data: render_one(habit, HabitView, "habit.json")}
+    %{habit: render_one(habit, HabitView, "habit.json")}
   end
 
   def render("habit.json", %{habit: habit}) do
