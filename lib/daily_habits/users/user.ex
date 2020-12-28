@@ -1,7 +1,7 @@
 defmodule DailyHabits.Users.User do
   use Ecto.Schema
   use Pow.Ecto.Schema
-  alias DailyHabits.Goals.{Habit, Streak}
+  alias DailyHabits.Goal.{Habit, Streak}
 
   schema "users" do
     pow_user_fields()

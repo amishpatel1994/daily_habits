@@ -4,7 +4,8 @@ defmodule DailyHabits.Goal.Streak do
 
   schema "streaks" do
     field :description, :string
-    field :end_data, :date
+    field :end_date, :date
+    field :last_checkin_date, :date
     field :start_date, :date
     belongs_to :user, DailyHabits.Users.User
     belongs_to :habit, DailyHabits.Goal.Habit
@@ -14,7 +15,7 @@ defmodule DailyHabits.Goal.Streak do
   @doc false
   def changeset(streak, attrs) do
     streak
-    |> cast(attrs, [:description, :start_date, :end_data])
-    |> validate_required([:description, :start_date, :end_data])
+    |> cast(attrs, [:description, :start_date, :end_date, :last_checkin_date, :user_id, :habit_id])
+    |> validate_required([:start_date, :user_id, :habit_id])
   end
 end
