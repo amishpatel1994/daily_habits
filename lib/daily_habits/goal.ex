@@ -117,6 +117,14 @@ defmodule DailyHabits.Goal do
     Repo.all(Streak)
   end
 
+  def get_active_streaks(user_id) do
+    Streak
+    |> Streak.active()
+    |> Streak.by_user_id(user_id)
+    |> Streak.preload_habit()
+    |> Repo.all()
+  end
+
   @doc """
   Gets a single streak.
 

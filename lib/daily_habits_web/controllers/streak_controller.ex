@@ -7,7 +7,7 @@ defmodule DailyHabitsWeb.StreakController do
   action_fallback DailyHabitsWeb.FallbackController
 
   def index(conn, _params) do
-    streaks = Goal.list_streaks()
+    streaks = Goal.get_active_streaks(conn.private[:user_id])
     render(conn, "index.json", streaks: streaks)
   end
 
