@@ -36,11 +36,11 @@ defmodule DailyHabitsWeb.StreakController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    streak = Goal.get_streak!(id)
+  # def delete(conn, %{"id" => id}) do
+  #   streak = Goal.get_streak!(id)
 
-    with {:ok, %Streak{}} <- Goal.delete_streak(streak) do
-      send_resp(conn, :no_content, "")
-    end
-  end
+  #   with {:ok, %Streak{}} <- Goal.delete_streak(streak) do
+  #     send_resp(conn, :no_content, "")
+  #   end
+  # end
 end

@@ -158,6 +158,10 @@ defmodule DailyHabits.Goal do
     streak
     |> Streak.changeset(attrs)
     |> Repo.update()
+    |> case do
+      {:ok, streak} -> {:ok, Repo.preload(streak, :habit)}
+      error -> error
+    end
   end
 
   @doc """

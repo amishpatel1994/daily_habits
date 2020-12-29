@@ -35,6 +35,7 @@ defmodule DailyHabitsWeb.Router do
     pipe_through [:api, :api_protected]
     get "/profile", TestController, :show
     get "/streaks", StreakController, :index
+    get "/streaks/:id", StreakController, :show
     get "/habits", HabitController, :index
     post "/streaks", StreakController, :create
     put "/streaks/:id", StreakController, :update
