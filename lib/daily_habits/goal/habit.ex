@@ -17,7 +17,6 @@ defmodule DailyHabits.Goal.Habit do
     |> validate_required([:title])
   end
 
-  def by_title(query, nil), do: query
   def by_title(query, title) do
     pattern = "%#{title}%"
     from(h in query, where: ilike(h.title, ^pattern))

@@ -36,6 +36,8 @@ defmodule DailyHabitsWeb.Router do
     get "/profile", TestController, :show
     get "/streaks", StreakController, :index
     get "/habits", HabitController, :index
+    post "/streaks", StreakController, :create
+    put "/streaks/:id", StreakController, :update
   end
 
   # Other scopes may use custom stacks.

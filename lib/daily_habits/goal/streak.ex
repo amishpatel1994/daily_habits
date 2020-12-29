@@ -30,7 +30,8 @@ defmodule DailyHabits.Goal.Streak do
   end
 
   def preload_habit(query) do
-    habit_query = from c in Habit, select: c.title
-    from(s in query, preload: [habit: ^habit_query])
+    # habit_query = from c in Habit, select: c.title
+    # from(s in query, preload: [habit: ^habit_query])
+    from(s in query, preload: :habit)
   end
 end

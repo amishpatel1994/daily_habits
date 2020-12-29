@@ -15,7 +15,9 @@ defmodule DailyHabitsWeb.StreakView do
       description: streak.description,
       start_date: streak.start_date,
       end_date: streak.end_date,
-      habit: streak.habit
+      last_checkin_date: streak.last_checkin_date,
+      habit_id: streak.habit_id,
+      title: streak.habit.title
     }
   end
 end

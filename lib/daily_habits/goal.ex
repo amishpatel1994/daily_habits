@@ -17,10 +17,23 @@ defmodule DailyHabits.Goal do
       [%Habit{}, ...]
 
   """
-  def list_habits(params) do
+  def list_habits(%{"habit" => habit}) do
     Habit
-    |> Habit.by_title(Map.get(params, "habit"))
+    |> Habit.by_title(habit)
     |> Repo.all()
+  end
+  def list_habits() do
+    Repo.all(Habit)
+  end
+
+  def find_or_create_habit(%{"title" => title} = params) do
+    case Map.get(params, "habit_id") do
+      nil ->
+        Habit.changeset(%Habit{}, %{title: title})
+        |> Repo.insert()
+      id ->
+        {:ok, Repo.get(Habit, id)}
+    end
   end
 
   @doc """
@@ -38,42 +51,6 @@ defmodule DailyHabits.Goal do
 
   """
   def get_habit!(id), do: Repo.get!(Habit, id)
-
-  @doc """
-  Creates a habit.
-
-  ## Examples
-
-      iex> create_habit(%{field: value})
-      {:ok, %Habit{}}
-
-      iex> create_habit(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def create_habit(attrs \\ %{}) do
-    %Habit{}
-    |> Habit.changeset(attrs)
-    |> Repo.insert()
-  end
-
-  @doc """
-  Updates a habit.
-
-  ## Examples
-
-      iex> update_habit(habit, %{field: new_value})
-      {:ok, %Habit{}}
-
-      iex> update_habit(habit, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def update_habit(%Habit{} = habit, attrs) do
-    habit
-    |> Habit.changeset(attrs)
-    |> Repo.update()
-  end
 
   @doc """
   Deletes a habit.
@@ -159,6 +136,10 @@ defmodule DailyHabits.Goal do
     %Streak{}
     |> Streak.changeset(attrs)
     |> Repo.insert()
+    |> case do
+      {:ok, streak} -> {:ok, Repo.preload(streak, :habit)}
+      error -> error
+    end
   end
 
   @doc """
